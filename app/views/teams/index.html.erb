@@ -1,0 +1,12 @@
+<h1>Teams</h1>
+<%= link_to 'Create Team', new_team_path, class: 'btn btn-primary' %>
+<ul>
+  <% @teams.each do |team| %>
+    <li>
+      <%= team.name  %> <strong><%= team.number %></strong>
+      <%= link_to edit_team_path(team) do %>
+      <%= team.name  %> <strong><%= team.number %></strong> 
+      <% end %>
+    </li>
+  <% end %>
+</ul>

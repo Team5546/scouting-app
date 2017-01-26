@@ -3,12 +3,23 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @scout = Scout.find_by email: request.env["omniauth.auth"][:info][:email]
+    info = {
+      email: request.env["omniauth.auth"][:info][:email],
+      first_name: request.env["omniauth.auth"][:info][:first_name],
+      last_name: request.env["omniauth.auth"][:info][:last_name]
+    }
+    @scout = Scout.find_by email: info[:email]
     if @scout.nil?
-      redirect_to root_url
+      if info[:email] =~ /@args\.us$/
+        @scout = Scout.create info
+        session[:id] = @scout.id
+        redirect_to root_url
+      else
+        redirect_to login_url
+      end
     else
       session[:id] = @scout.id
-      redirect_to scouts_url
+      redirect_to root_url
     end
   end
 

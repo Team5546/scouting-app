@@ -10,12 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120225328) do
+ActiveRecord::Schema.define(version: 20170125210847) do
 
   create_table "scouts", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string  "name"
+    t.integer "number"
+    t.boolean "high_fuel"
+    t.boolean "low_fuel"
+    t.boolean "get_gear"
+    t.boolean "deliver_gear"
+    t.boolean "climb_rope"
+    t.text    "comments"
+    t.string  "top_picture"
+    t.string  "side_picture"
+    t.string  "front_picture"
   end
 
 end

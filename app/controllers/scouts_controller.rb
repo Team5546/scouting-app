@@ -1,8 +1,5 @@
-class ScoutsController < ApplicationController
+class ScoutsController < AuthenticatedController
   def index
-    if current_scout.nil?
-      redirect_to login_url
-    end
     @scouts = Scout.all
   end
 
