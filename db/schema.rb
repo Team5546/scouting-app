@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125210847) do
+ActiveRecord::Schema.define(version: 20170127201105) do
 
   create_table "scouts", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email"
+    t.string  "nickname"
+    t.boolean "is_active"
   end
 
   create_table "teams", force: :cascade do |t|

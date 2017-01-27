@@ -1,10 +1,10 @@
 <h2>Scouts</h2>
 
 <ul>
-  <% @scouts.each do |scout| %>
+  <% @scouts.each do |scout|%>
   <li>
     <%= scout.name %> <small class="text-muted"><%= scout.email %></small>
-    <%= link_to "Edit", edit_scout_path(scout) %>
+    <%= link_to "edit", edit_scout_path(scout) %>
   </li>
 <% end %>
 </ul>

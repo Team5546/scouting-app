@@ -4,6 +4,6 @@ class Scout < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   def name
-    "#{first_name} #{last_name}"
+    [first_name, nickname.present? ? "\"#{nickname}\"" : nil, last_name].join(' ')
   end
 end

@@ -1,11 +1,11 @@
-<h1>Teams</h1>
+<h1>Teams - Pit Scouting</h1>
 <%= link_to 'Create Team', new_team_path, class: 'btn btn-primary' %>
 <ul>
   <% @teams.each do |team| %>
     <li>
-      <%= team.name  %> <strong><%= team.number %></strong>
+      <strong> <%= team.number  %> </strong> - <%= team.name %>
       <%= link_to edit_team_path(team) do %>
-      <%= team.name  %> <strong><%= team.number %></strong> 
+      <%= 'edit'  %>
       <% end %>
     </li>
   <% end %>

@@ -1,6 +1,6 @@
 class TeamsController < AuthenticatedController
   def index
-    @teams = Team.all
+    @teams = Team.order('number')
   end
 
   def new

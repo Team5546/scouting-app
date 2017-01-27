@@ -1,6 +1,6 @@
 class ScoutsController < AuthenticatedController
   def index
-    @scouts = Scout.all
+    @scouts = Scout.order('lower(first_name), lower(last_name)')
   end
 
   def new
@@ -25,6 +25,6 @@ class ScoutsController < AuthenticatedController
   private
 
   def scout_params
-    params[:scout].permit(:first_name, :last_name, :email)
+    params[:scout].permit(:first_name, :last_name, :nickname, :email)
   end
 end
