@@ -44,12 +44,12 @@
    <div class='form-check'>
      <br>
       <label class='form-check-label'>
-        <%= f.check_box :auto_moved, class: 'form-check-input' %> 
+        <%= f.check_box :auto_moved, class: 'form-check-input' %>
         Did they move?
       </label>
     </div>
     <br>
-    <h6>Speed</h6>
+    <h6>Fuel Speed</h6>
     <table class='table table-bordered table-sm table-range'>
       <thead class="thead-inverse">
         <tr>
@@ -94,19 +94,19 @@
     </table>
     <div class='form-check'>
       <label class='form-check-label'>
-        <%= f.check_box :auto_fuel_bottom, class: 'form-check-input' %> 
+        <%= f.check_box :auto_fuel_bottom, class: 'form-check-input' %>
         Low Fuel in Auto?
       </label>
     </div>
     <div class='form-check'>
       <label class='form-check-label'>
-        <%= f.check_box :auto_gears_collected, class: 'form-check-input' %> 
+        <%= f.check_box :auto_gears_collected, class: 'form-check-input' %>
         Auto Gears Collected?
       </label>
     </div>
     <div class='form-check'>
       <label class='form-check-label'>
-        <%= f.check_box :auto_gears_delivered, class: 'form-check-input' %> 
+        <%= f.check_box :auto_gears_delivered, class: 'form-check-input' %>
         Auto Gears Delivered?
       </label>
     </div>
@@ -125,7 +125,7 @@
   </div>
   <div class="tab-pane" id="teleop" role="tabpanel">
     <br>
-    <h6>Speed</h6>
+    <h6>Fuel Speed</h6>
     <table class='table table-bordered table-sm table-range'>
       <thead class="thead-inverse">
         <tr>
@@ -168,7 +168,7 @@
         </tr>
       </tbody>
     </table>
-    
+
     <h6>Teleop Low Fuel</h6>
     <table class='table table-bordered table-sm table-range'>
       <thead class="thead-inverse">
@@ -190,9 +190,9 @@
         </tr>
       </tbody>
     </table>
-   
+
     <br />
-    
+
     <div class='form-check'>
       <label class='form-check-label'>
         <%= f.check_box :teleop_gears_off_the_ground, class: 'form-check-input' %>
@@ -200,13 +200,13 @@
       </label>
     </div>
     <br>
-    <%= f.label :teleop_gears_collected %> 
+    <%= f.label :teleop_gears_collected %>
     <%= f.hidden_field :teleop_gears_collected, class: 'form-control', id: 'teleopGearsCollected' %>
     <button type='button' class='btn btn-outline-primary'id='addTeleopGearsCollected'>Gears Collected: 0</button><br><br>
-    <%= f.label :teleop_gears_delivered %> 
+    <%= f.label :teleop_gears_delivered %>
     <%= f.hidden_field :teleop_gears_delivered, class: 'form-control', id: 'teleopGearsDelivered' %>
   <button type='button' class='btn btn-outline-warning'id='addTeleopGearsDelivered'>Gears Delivered: 0</button><br><br>
-    
+
   </div>
   <div class="tab-pane" id="final" role="tabpanel">
     <br>
