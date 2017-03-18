@@ -11,6 +11,10 @@ class Scout < ApplicationRecord
 
   has_secure_password
 
+  before_save do
+    self.email = email.downcase if email_changed?
+  end
+
   before_validation do
     self.password ||= SecureRandom.hex(20)
   end

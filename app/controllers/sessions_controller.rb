@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       first_name: request.env["omniauth.auth"][:info][:first_name],
       last_name: request.env["omniauth.auth"][:info][:last_name]
     }
-    @scout = Scout.find_by email: info[:email]
+    @scout = Scout.find_by email: info[:email].downcase
     if @scout.nil?
       if info[:email] =~ /@args\.us$/
         @scout = Scout.create! info
