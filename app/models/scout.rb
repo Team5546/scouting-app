@@ -11,7 +11,7 @@ class Scout < ApplicationRecord
 
   has_secure_password
 
-  before_save do
+  before_validation do
     self.password ||= SecureRandom.hex(20)
   end
 
