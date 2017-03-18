@@ -48,7 +48,7 @@ class ReportsController < AuthenticatedController
   private
 
   def report_params
-    report_params = params.require(:report).permit(:match_id, :scout, :auto_flipped, :auto_moved, :auto_fuel_speed, :auto_fuel_accuracy, :auto_fuel_bottom, :auto_gears_collected, :auto_gears_delivered, :auto_goal_line, :teleop_fuel_speed, :teleop_fuel_accuracy, :teleop_fuel_bottom, :teleop_gears_off_the_ground, :teleop_gears_collected, :teleop_gears_delivered, :flipped, :broken)
+    report_params = params.require(:report).permit(:match_id, :scout, :auto_flipped, :auto_moved, :auto_fuel_speed, :auto_fuel_accuracy, :auto_fuel_bottom, :auto_gears_collected, :auto_gears_delivered, :auto_goal_line, :teleop_fuel_speed, :teleop_fuel_accuracy, :teleop_fuel_bottom, :teleop_gears_off_the_ground, :teleop_gears_collected, :teleop_gears_delivered, :flipped, :broken, :climb)
   end
 
   def set_match
