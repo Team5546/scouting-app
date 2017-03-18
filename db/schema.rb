@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318041636) do
+ActiveRecord::Schema.define(version: 20170318044855) do
 
   create_table "alliance_members", force: :cascade do |t|
     t.integer "team_id"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170318041636) do
     t.string  "last_name"
     t.string  "email"
     t.boolean "is_admin"
-    t.integer "slot"
+    t.string  "slot"
     t.string  "nickname"
     t.boolean "is_active",       default: true
     t.string  "password_digest"
