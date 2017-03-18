@@ -11,6 +11,10 @@ class Scout < ApplicationRecord
 
   has_secure_password
 
+  before_save do
+    self.password ||= SecureRandom.hex(20)
+  end
+
   def name
     [first_name, nickname.present? ? "\"#{nickname}\"" : nil, last_name].join(' ')
   end
