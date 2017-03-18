@@ -1,0 +1,235 @@
+<h2>
+  <small class="float-right">
+    Team <%= @report.team.number %>
+  </small>
+  Match #<%= @match.number %>
+</h2>
+
+<!--<table class="table table-bordered table-sm">-->
+<!--  <tbody>-->
+<!--  <% @match.alliances.each do |alliance| %>-->
+<!--    <tr class="<%= alliance.color == 'red' ? 'text-red' : 'text-blue' %>">-->
+<!--      <% alliance.teams.each do |team| %>-->
+<!--        <td><%= team.number %></td>-->
+<!--      <% end %>-->
+<!--    </tr>-->
+<!--  <% end %>-->
+<!--  </tbody>-->
+<!--</table> -->
+
+<div class="text-danger">
+  <ul>
+    <% @report.errors.messages.each_pair do |attr, errors| %>
+      <li><%= attr %> <%= errors.to_sentence %></li>
+    <% end %>
+  </ul>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#auto" role="tab">Autonomous</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#teleop" role="tab">Teleop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#final" role="tab">Final</a>
+  </li>
+</ul>
+
+<%= form_for [@match, @report] do |f| %>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="auto" role="tabpanel">
+   <div class='form-check'>
+     <br>
+      <label class='form-check-label'>
+        <%= f.check_box :auto_moved, class: 'form-check-input' %> 
+        Did they move?
+      </label>
+    </div>
+    <br>
+    <h6>Speed</h6>
+    <table class='table table-bordered table-sm table-range'>
+      <thead class="thead-inverse">
+        <tr>
+          <th class="text-center"><%= f.label 'auto_fuel_speed_1', 'Slow' %></th>
+          <th class="text-center"></td>
+          <th class="text-center"><%= f.label 'auto_fuel_speed_3', 'Med' %></th>
+          <th class="text-center"></td>
+          <th class="text-center"><%= f.label 'auto_fuel_speed_5', 'High' %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_speed', 1 %></td>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_speed', 2 %></td>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_speed', 3 %></td>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_speed', 4 %></td>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_speed', 5 %></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <h6>Accuracy</h6>
+    <table class='table table-bordered table-sm table-range'>
+      <thead class="thead-inverse">
+        <tr>
+          <th class="text-center"><%= f.label 'auto_fuel_accuracy_1', 'Low' %></th>
+          <th class="text-center"></th>
+          <th class="text-center"><%= f.label 'auto_fuel_accuracy_3', 'Med' %></th>
+          <th class="text-center"></th>
+          <th class="text-center"><%= f.label 'auto_fuel_accuracy_5', 'High' %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_accuracy', 1 %></td>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_accuracy', 2 %></td>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_accuracy', 3 %></td>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_accuracy', 4 %></td>
+          <td class="text-center"><%= f.radio_button 'auto_fuel_accuracy', 5 %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :auto_fuel_bottom, class: 'form-check-input' %> 
+        Low Fuel in Auto?
+      </label>
+    </div>
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :auto_gears_collected, class: 'form-check-input' %> 
+        Auto Gears Collected?
+      </label>
+    </div>
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :auto_gears_delivered, class: 'form-check-input' %> 
+        Auto Gears Delivered?
+      </label>
+    </div>
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :auto_goal_line, class: 'form-check-input' %>
+        Auto Goal Line?
+      </label>
+    </div>
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :auto_flipped, class: 'form-check-input' %>
+        Auto Flipped?
+      </label>
+    </div>
+  </div>
+  <div class="tab-pane" id="teleop" role="tabpanel">
+    <br>
+    <h6>Speed</h6>
+    <table class='table table-bordered table-sm table-range'>
+      <thead class="thead-inverse">
+        <tr>
+          <th class="text-center"><%= f.label 'teleop_fuel_speed_1', 'Slow' %></th>
+          <th class="text-center"></th>
+          <th class="text-center"><%= f.label 'teleop_fuel_speed_3', 'Med' %></th>
+          <th class="text-center"></th>
+          <th class="text-center"><%= f.label 'teleop_fuel_speed_5', 'High' %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_speed', 1 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_speed', 2 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_speed', 3 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_speed', 4 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_speed', 5 %></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <h6>Accuracy</h6>
+    <table class='table table-bordered table-sm table-range'>
+      <thead class="thead-inverse">
+        <tr>
+          <th class="text-center"><%= f.label 'teleop_fuel_accuracy_1', 'Low' %></th>
+          <th class="text-center"></th>
+          <th class="text-center"><%= f.label 'teleop_fuel_accuracy_3', 'Med' %></th>
+          <th class="text-center"></th>
+          <th class="text-center"><%= f.label 'teleop_fuel_accuracy_5', 'High' %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_accuracy', 1 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_accuracy', 2 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_accuracy', 3 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_accuracy', 4 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_accuracy', 5 %></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h6>Teleop Low Fuel</h6>
+    <table class='table table-bordered table-sm table-range'>
+      <thead class="thead-inverse">
+        <tr>
+          <td class="text-center"><%= f.label 'teleop_fuel_bottom_1', 'Low' %></td>
+          <td class="text-center"></td>
+          <td class="text-center"><%= f.label 'teleop_fuel_bottom_3', 'Med' %></td>
+          <td class="text-center"></td>
+          <td class="text-center"><%= f.label 'teleop_fuel_bottom_5', 'High' %></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_bottom', 1 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_bottom', 2 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_bottom', 3 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_bottom', 4 %></td>
+          <td class="text-center"><%= f.radio_button 'teleop_fuel_bottom', 5 %></td>
+        </tr>
+      </tbody>
+    </table>
+   
+    <br />
+    
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :teleop_gears_off_the_ground, class: 'form-check-input' %>
+        Can they pick gears off the ground?
+      </label>
+    </div>
+    <br>
+    <%= f.label :teleop_gears_collected %> 
+    <%= f.hidden_field :teleop_gears_collected, class: 'form-control', id: 'teleopGearsCollected' %>
+    <button type='button' class='btn btn-outline-primary'id='addTeleopGearsCollected'>Gears Collected: 0</button><br><br>
+    <%= f.label :teleop_gears_delivered %> 
+    <%= f.hidden_field :teleop_gears_delivered, class: 'form-control', id: 'teleopGearsDelivered' %>
+  <button type='button' class='btn btn-outline-warning'id='addTeleopGearsDelivered'>Gears Delivered: 0</button><br><br>
+    
+  </div>
+  <div class="tab-pane" id="final" role="tabpanel">
+    <br>
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :flipped, class: 'form-check-input' %>
+        Flipped?
+      </label>
+    </div>
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :broken, class: 'form-check-input' %>
+        Broken?
+      </label>
+    </div>
+    <div class='form-check'>
+      <label class='form-check-label'>
+        <%= f.check_box :climb, class: 'form-check-input' %>
+        Climb?
+      </label>
+    </div>
+    <br>
+    <%= f.submit 'Submit', class: 'btn btn-outline-primary' %>
+  </div>
+</div>
+<% end %>

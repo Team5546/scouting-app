@@ -1,0 +1,70 @@
+<% if current_scout.slot.nil? %>
+  <p>Select a slot to start scouting a match:</p>
+  <div class="list-group">
+    <% Scout.slots.each do |slot| %>
+      <div class="list-group-item">
+      <%= form_for current_scout, remote: true do |f| %>
+        <%= f.hidden_field :slot, value: slot.first %>
+        <%= f.submit [slot.first.upcase, Scout.is_assigned?(slot.first).try(:first_name)].compact.join(": "), class: " #{Scout.is_assigned?(slot.first) ? 'disabled' : ''}", disabled: Scout.is_assigned?(slot.first) %>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+  <hr />
+<% else %>
+  <p class="mb-3">
+    You are assigned to the <strong><%= current_scout.slot %></strong> slot. 
+  </p>
+<% end %>
+
+<% if current_scout.slot %>
+  <h4>My Upcoming Matches</h4>
+  
+  <table class="table table-sm table-bordered">
+    <% @upcoming_matches.each do |match| %>
+      <tbody>
+
+        <% match.alliances.each.with_index do |alliance, i| %>
+          <tr>
+            <% if i == 0 %>
+              <td rowspan="2"><%= match.number %></td>
+            <% end %>
+            <% alliance.teams.each do |team| %>
+              <td class="<%= 'table-warning' if current_scout.find_team_for_match(match) == team %> <%= alliance.color == 'red' ? 'text-red' : 'text-blue' %>"><%= team.number %></td>
+            <% end %>
+            <% if i == 0 %>
+              <td rowspan="2">
+                <%= link_to 'start', new_match_report_path(match) %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+<% end %>
+
+<h4>My Previous Matches</h4>
+
+<table class="table table-sm table-bordered">
+  <% @previous_reports.each do |report| %>
+    <tbody>
+      <% report.match.alliances.each.with_index do |alliance, i| %>
+        <tr>
+          <% if i == 0 %>
+            <td rowspan="2"><%= report.match.number %></td>
+          <% end %>
+          <% alliance.teams.each do |team| %>
+            <td class="<%= 'table-warning' if report.team == team %> <%= alliance.color == 'red' ? 'text-red' : 'text-blue' %>"><%= team.number %></td>
+          <% end %>
+          <% if i == 0 %>
+            <td rowspan="2">
+              <%= link_to 'edit', edit_match_report_path(report.match, report) %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

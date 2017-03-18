@@ -1,0 +1,26 @@
+<h4>Matches</h4>
+
+<%= link_to 'New', new_match_path, class: 'btn btn-outline-primary mb-3' if current_scout.is_admin? %>
+
+<table class="table table-sm table-bordered table-matches">
+  <% @matches.each do |match| %>
+    <tbody>
+      <% match.alliances.each.with_index do |alliance, i| %>
+        <tr>
+          <% if i == 0 %>
+            <td rowspan="2"><%= match.number %></td>
+          <% end %>
+          <% alliance.teams.each do |team| %>
+            <td class="<%= 'table-success' if match.reports.find_by(team: team) %> <%= alliance.color == 'red' ? 'text-red' : 'text-blue' %>"><%= team.number %></td>
+          <% end %>
+          <% if i == 0 %>
+            <td rowspan="2">
+              <%= link_to 'edit', edit_match_path(match) %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
+

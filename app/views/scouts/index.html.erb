@@ -1,12 +1,22 @@
-<h2>Scouts</h2>
-
-<ul>
+<h2 class="display-4">Scouts</h2>
+<%= link_to "Show All", scouts_path, class: "btn btn-secondary btn-sm #{'disabled' if params[:active].blank?}" %>
+<%= link_to "Show Active", scouts_path(active: true), class: "btn btn-secondary btn-sm #{'disabled' if params[:active] == 'true'}" %>
+<%= link_to "Show Inactive", scouts_path(active: false), class: "btn btn-secondary btn-sm #{'disabled' if params[:active] == 'false'}" %>
+<ul class="scout-list">
   <% @scouts.each do |scout|%>
   <li>
-    <%= scout.name %> <small class="text-muted"><%= scout.email %></small>
+    <%= scout.name %> <small class="text-muted">| <%= scout.email %></small>
     <%= link_to "edit", edit_scout_path(scout) %>
   </li>
 <% end %>
 </ul>
 
-<%= link_to 'New Scout', new_scout_path, class: 'btn btn-default' %>
+
+
+<%= link_to 'New Scout', new_scout_path, class: 'btn btn-primary' %>
+
+<style>
+  .scout-list {
+    margin-top: 1%;
+  }
+</style>

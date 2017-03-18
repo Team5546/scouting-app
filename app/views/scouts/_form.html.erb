@@ -1,3 +1,12 @@
+
+<div class="text-danger">
+  <ul>
+    <% @scout.errors.messages.each_pair do |attr, errors| %>
+      <li><%= attr %> <%= errors.to_sentence %></li>
+    <% end %>
+  </ul>
+</div>
+
 <%= form_for @scout do |f| %>
   <div class="form-group">
     <%= f.label :first_name, class: 'control-label' %>
@@ -15,6 +24,17 @@
     <%= f.label :email, class: 'control-label' %>
     <%= f.text_field :email, class: 'form-control' %>
   </div>
-  <button class="btn btn-primary">Save</button>
-
+  <div class="form-group">
+    <%= f.label :password, class: 'control-label' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :slot, class: 'control-label' %>
+    <%= f.select :slot, [['none', '']] + Scout.slots.collect { |s| [s.first.upcase, s.first] }, {allow_blank: true}, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label  :is_active, class: 'control-label' %>
+    <%= f.check_box :is_active %>
+  </div>
+  <button class="btn btn-primary">Save</button>  
 <% end %>

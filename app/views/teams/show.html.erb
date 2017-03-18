@@ -1,0 +1,10 @@
+<% @team.reports.each do |report|%>
+  <li>
+    <%= report.match_id %>
+    <strong>Autonomous</strong>
+    High Fuel <%= reports.auto_fuel_top %> | High Fuel Accuracy <%= reports.auto_fuel_accuracy %> | Bottom Fuel <%= reports.auto_fuel_bottom %> | Gears Collected <%= reports.auto_gears_collected %> | Gears Delivered <%= reports.auto_gears_delivered %> | Goal Line <%= reports.auto_goal_line %>
+    <strong>Teleop</strong>
+    High Fuel <%= reports.teleop_fuel_top %> | High Fuel Accuracy <%= reports.teleop_fuel_accuracy %> | Bottom Fuel <%= reports.teleop_fuel_bottom %> | Gears Off the Ground <%= reports.teleop_gears_off_the_ground %>| Gears Collected <%= reports.teleop_gears_collected %> | Gears Delivered <%= reports.teleop_gears_delivered %> | Flipped? <%= reports.flipped %> | Broke Down? <%= reports.broken %> 
+    <strong>Post-Match</strong>
+  </li>
+<% end %>

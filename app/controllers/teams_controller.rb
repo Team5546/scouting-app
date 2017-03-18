@@ -25,10 +25,15 @@ class TeamsController < AuthenticatedController
   def edit
     @team = Team.find_by id: params[:id]
   end
+  
+  def show
+    @team = Team.find_by id: params[:id]
+    
+  end
 
 private
 
-def team_params
+  def team_params
   params[:team].permit(:name, :number, :high_fuel, :low_fuel, :get_gear, :deliver_gear, :climb_rope, :comments, :top_picture, :side_picture, :front_picture)
- end
+  end
 end

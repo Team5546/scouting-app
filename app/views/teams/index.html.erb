@@ -1,12 +1,26 @@
-<h1>Teams - Pit Scouting</h1>
-<%= link_to 'Create Team', new_team_path, class: 'btn btn-primary' %>
-<ul>
-  <% @teams.each do |team| %>
-    <li>
-      <strong> <%= team.number  %> </strong> - <%= team.name %>
-      <%= link_to edit_team_path(team) do %>
-      <%= 'edit'  %>
-      <% end %>
-    </li>
-  <% end %>
+<h1 class='display-4'>Teams</h1>
+
+<%= link_to 'Create Team', new_team_path, class: 'btn btn-outline-primary mb-2' if current_scout.is_admin? %>
+
+<table class="table table-bordered table-sm table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><strong><%= team.number  %></strong></td>
+        <td><small><%= team.name %></small></td>
+        <td>
+          <%= link_to 'view', team %> |
+          <%= link_to 'edit', edit_team_path(team) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </ul>
+</table>

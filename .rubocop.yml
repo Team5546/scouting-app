@@ -1,0 +1,22 @@
+AllCops:
+  Exclude:
+    - db/migrate/*.rb
+    - db/schema.rb
+    - node_modules/**/*
+    - bower_components/**/*
+Documentation:
+  Enabled: false
+Lint/UnusedBlockArgument:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+  Exclude:
+    - db/migrate/*.rb
+Style/PredicateName:
+  Enabled: false
+Rails:
+  Enabled: true

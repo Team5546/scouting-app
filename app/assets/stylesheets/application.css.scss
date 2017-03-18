@@ -14,6 +14,60 @@
  *= require_self
  */
 
-body {
-  padding: 0 15px;
+.main {
+    padding: 0px 15px;
+    margin-top: 10px;
 }
+
+[type=submit].dropdown-item:not(.disabled) {
+    cursor: pointer;
+}
+
+[type=submit].dropdown-item:has(.disabled) {
+    cursor: not-allowed;
+}
+
+.btn-login {
+    font-size: 100%;
+    border-radius: 10px;
+    border-width: 5px;
+    padding-bottom: 30px;
+}
+
+.form {
+    margin-bottom: 1%;
+    padding-bottom: 1%;
+}
+
+.mode {
+    width: 100%;
+    text-align: center;
+    padding: 5%;
+}
+
+.blue {
+    background-color: #0014cc; 
+}
+
+.text-blue {
+    color: #0014cc; 
+}
+
+.red {
+    background-color:  #b30000;
+}
+
+.text-red {
+    color: #b30000; 
+}
+
+.tab-content {
+    width: 100%;
+}
+
+.table-range {
+  td, th {
+    width: 20%;
+  }
+}
+

@@ -1,0 +1,21 @@
+<h1 class="display-4">Edit Multipliers</h1>
+<h2><small>Edit Options -</small></h2>
+
+<table>
+  <thead>
+    <tr>
+      <td></td>
+      <td>Multipliers</td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @weights.each do |weight| %>
+      <%= form_for weight do |weights| %>
+        <tr>
+          <td><strong><%= weights.label :weight %></strong></td>
+          <td><%= weights.number_field :weight, class: "form-control" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

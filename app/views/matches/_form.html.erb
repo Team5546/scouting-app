@@ -1,0 +1,29 @@
+<ul>
+  <% @match.errors.messages.each_pair do |attr, errors| %>
+    <li><%= attr %> <%= errors.to_sentence %></li>
+  <% end %>
+</ul>
+<%= form_for @match do |f| %>
+  <div class="form-group">
+    <%= f.label :number, class: 'control-label' %>
+    <%= f.text_field :number, class: 'form-control' %>
+  </div>
+  <%= f.fields_for :alliances do |a| %>
+    <%= a.hidden_field :id %>
+    <%= a.hidden_field :color %>
+    <h2><%= a.object.color.capitalize %></h2>
+    <% a.object.members.each.with_index do |member, index| %>
+      <%= a.fields_for :members, member do |m| %>
+        <%= m.hidden_field :id %>
+        <div class='form-group'>
+          <label>Slot <%= index + 1 %></label>
+          <%= m.select :team_id, [] + Team.ordered.map { |team| [[team.number, team.name].join(' - '), team.id] }, { include_blank: true }, class: 'form-control' %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <div class="form-group">
+    <button class="btn btn-primary btn-block btn-lg">Save</button>
+    <a href="/matches" class="btn btn-link btn-block">Cancel</a>
+  </div>
+<% end %>

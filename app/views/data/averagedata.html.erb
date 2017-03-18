@@ -1,0 +1,47 @@
+<h1 class="display-4">Average Data</h1>
+<table class='table table-condensed table-bordered table-striped table-responsive'>
+  <tbody>
+  <thead>
+    <tr>
+      <td><%= link_to "None", averagedata_path, class: "btn btn-secondary btn-sm #{'disabled' if params[:auto_fuel_speed].blank? && params[:auto_fuel_accuracy].blank? && params[:auto_fuel_bottom].blank? && params[:auto_gears_collected].blank? && params[:auto_gears_delivered].blank? && params[:auto_rotors].blank? && params[:auto_goal_line].blank? && params[:auto_flipped].blank? && params[:teleop_fuel_top].blank? && params[:teleop_fuel_accuracy].blank? && params[:teleop_fuel_bottom].blank? && params[:teleop_gears_collected].blank? && params[:teleop_gears_delivered].blank? && params[:teleop_gears_off_the_ground].blank? && params[:climb].blank? && params[:flipped].blank? && params[:broken].blank?}" %></td>
+      <td><%= link_to "Auto Fuel Speed", averagedata_path(auto_fuel_speed: true), class: "btn btn-primary btn-sm #{'disabled' if params[:auto_fuel_speed] == 'true'}" %></td>
+      <td><%= link_to "Auto Fuel Accuracy", averagedata_path(auto_fuel_accuracy: true), class: "btn btn-primary btn-sm #{'disabled' if params[:auto_fuel_accuracy] == 'true'}" %></td>
+      <td><%= link_to "Auto Fuel Bottom", averagedata_path(auto_fuel_bottom: true), class: "btn btn-primary btn-sm #{'disabled' if params[:auto_fuel_bottom] == 'true'}" %></td>
+      <td><%= link_to "Auto Gears Collected", averagedata_path(auto_gears_collected: true), class: "btn btn-primary btn-sm #{'disabled' if params[:auto_gears_collected] == 'true'}" %></td>
+      <td><%= link_to "Auto Gears Delivered", averagedata_path(auto_gears_delivered: true), class: "btn btn-primary btn-sm #{'disabled' if params[:auto_gears_delivered] == 'true'}" %></td>
+      <td><%= link_to "Auto Goal Line", averagedata_path(auto_goal_line: true), class: "btn btn-primary btn-sm #{'disabled' if params[:auto_goal_line] == 'true'}" %></td>
+      <td><%= link_to "Teleop Fuel Speed", averagedata_path(teleop_fuel_speed: true), class: "btn btn-success btn-sm #{'disabled' if params[:teleop_fuel_speed] == 'true'}" %></td>
+      <td><%= link_to "Teleop Fuel Accuracy", averagedata_path(teleop_fuel_accuracy: true), class: "btn btn-success btn-sm #{'disabled' if params[:teleop_fuel_accuracy] == 'true'}" %></td>
+      <td><%= link_to "Teleop Low Fuel", averagedata_path(teleop_fuel_bottom: true), class: "btn btn-success btn-sm #{'disabled' if params[:teleop_fuel_bottom] == 'true'}" %></td>
+      <td><%= link_to "Teleop Gears off the Ground", averagedata_path(teleop_gears_off_the_ground: true), class: "btn btn-success btn-sm #{'disabled' if params[:teleop_gears_off_the_ground] == 'true'}" %></td>
+      <td><%= link_to "Teleop Gears Collected", averagedata_path(teleop_gears_collected: true), class: "btn btn-success btn-sm #{'disabled' if params[:teleop_gears_collected] == 'true'}" %></td>
+      <td><%= link_to "Teleop Gears Delivered", averagedata_path(teleop_gears_delivered: true), class: "btn btn-success btn-sm #{'disabled' if params[:teleop_gears_delivered] == 'true'}" %></td>
+      <td><%= link_to "Climb", averagedata_path(climb: true), class: "btn btn-success btn-sm #{'disabled' if params[:climb] == 'true'}" %></td>
+      <td><%= link_to "Auto Flipped", averagedata_path(auto_flipped: true), class: "btn btn-danger btn-sm #{'disabled' if params[:auto_flipped] == 'true'}" %></td>
+      <td><%= link_to "Teleop Flipped", averagedata_path(flipped: true), class: "btn btn-danger btn-sm #{'disabled' if params[:flipped] == 'true'}" %></td>
+      <td><%= link_to "Broken", averagedata_path(broken: true), class: "btn btn-danger btn-sm #{'disabled' if params[:broken] == 'true'}" %></td>
+    </tr>
+  </thead>
+<% @reports.each do |report|%>
+  <tr>
+    <td><strong><%= report.team.number %></small></strong></td>
+    <td><%= report.auto_fuel_speed %></td>
+    <td><%= report.auto_fuel_accuracy %></td>
+    <td><%= report.auto_fuel_bottom %></td>
+    <td><%= report.auto_gears_collected %></td>
+    <td><%= report.auto_gears_delivered %></td>
+    <td><%= report.auto_goal_line %></td>
+    <td><%= report.teleop_fuel_speed%></td>
+    <td><%= report.teleop_fuel_accuracy %></td>
+    <td><%= report.teleop_fuel_bottom %></td>
+    <td><%= report.teleop_gears_off_the_ground %></td>
+    <td><%= report.teleop_gears_collected %></td>
+    <td><%= report.teleop_gears_delivered %></td>
+    <td><%= report.climb %></td>
+    <td><%= report.auto_flipped %></td>
+    <td><%= report.flipped %></td>
+    <td><%= report.broken %> </td>
+  </tr>
+<% end %>
+</tbody>
+</table>

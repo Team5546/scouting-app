@@ -1,0 +1,85 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#teams" role="tab">Teams</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#reports" role="tab">Reports</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="teams" role="tabpanel">
+    <h1 class="display-6">Teams</h1>
+    <table class='table'>
+      <thead>
+        <tr>
+          <td><strong>Number</strong></td>
+          <td><strong>Name</strong></td>
+          <td><strong>High Fuel</strong></td>
+          <td><strong>Low Fuel</strong></td>
+          <td><strong>Collect gears?</strong></td>
+          <td><strong>Deliver gears?</strong></td>
+          <td><strong>Climb rope?</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @teams.order(:number).each do |team|%>
+          <tr>
+            <td><strong><%= (team.number) %></strong></td>
+            <td><%= team.name %></td>
+            <td><%= team.high_fuel %></td>
+            <td><%= team.low_fuel %></td>
+            <td><%= team.get_gear %></td>
+            <td><%= team.deliver_gear %></td>
+            <td><%= team.climb_rope %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="reports" role="tabpanel">
+    <h1 class="display-6">Reports</h1>
+    <table class='table'>
+      <thead>
+        <tr>
+          <td></td>
+          <td><strong>Auto Fuel Speed</strong></td>
+          <td><strong>Auto Fuel Accuracy</strong></td>
+          <td><strong>Auto Bottom Fuel</strong></td>
+          <td><strong>Auto Gears Collected</strong></td>
+          <td><strong>Auto Gears Delivered</strong></td>
+          <td><strong>Auto Goal Line</strong></td>
+          <td><strong>Teleop Fuel Speed</strong></td>
+          <td><strong>Teleop Fuel Accuracy</strong></td>
+          <td><strong>Teleop Bottom Fuel</strong></td>
+          <td><strong>Teleop Fuel Speed</strong></td>
+          <td><strong>Teleop Gears Off Ground</strong></td>
+          <td><strong>Teleop Gears Collected</strong></td>
+          <td><strong>Teleop Flipped</strong></td>
+          <td><strong>Teleop Broke Down</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reports.each do |report|%>
+          <tr>
+            <td><strong><%= report.match_id %><br><small><%= report.team.number %></small></strong></td>
+            <td><%= ['Slow', 'Slow-Med', 'Medium', 'Med-High', 'High'][report.auto_fuel_speed.to_i - 1] %></td>
+            <td><%= ['Slow', 'Slow-Med', 'Medium', 'Med-High', 'High'][report.auto_fuel_accuracy.to_i - 1] %></td>
+            <td><%= report.auto_fuel_bottom %></td>
+            <td><%= report.auto_gears_collected %></td>
+            <td><%= report.auto_gears_delivered %></td>
+            <td><%= report.auto_goal_line %></td>
+            
+            <td><%= ['Slow', 'Slow-Med', 'Medium', 'Med-High', 'High'][report.teleop_fuel_speed.to_i - 1] %></td>
+            <td><%= ['Slow', 'Slow-Med', 'Medium', 'Med-High', 'High'][report.teleop_fuel_accuracy.to_i - 1] %></td>
+            <td><%= report.teleop_fuel_bottom %></td>
+            <td><%= report.teleop_gears_off_the_ground %></td>
+            <td><%= report.teleop_gears_collected %></td>
+            <td><%= report.teleop_gears_delivered %></td>
+            <td><%= report.flipped %></td>
+            <td><%= report.broken %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

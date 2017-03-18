@@ -1,5 +1,23 @@
-<h1>Official Scouting App of A.R.T.</h1>
+<blockquote class="blockquote">
+  <h1 class="mb-0" style="width: 100%;">"This is where it gets awesome."</h1>
+  <footer class="blockquote-footer">Kevin Primm <cite title="Source Title">The Last Ruby Bender</cite></footer>
+</blockquote>
 
-<p>
-  <%= link_to 'Login with Google', '/auth/google', class: 'btn btn-success' %> 
-</p>
+<%= form_tag login_url, method: :post do %>
+  <div class="form-group">
+    <label>Email</label>
+    <%= text_field_tag :email, '', class: 'form-control', type: 'email' %>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <%= password_field_tag :password, '', class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <button type="submit" class="btn btn-block btn-primary">Login</button>
+  </div>
+<% end %>
+
+<hr />
+
+<%= link_to 'Login with Google', '/auth/google', class: 'btn btn-outline-success btn-lg btn-block' %>
