@@ -11,17 +11,17 @@ class ReportsController < AuthenticatedController
   before_action :set_match, except: :index
   before_action :set_report, except: [:index, :new, :create]
   before_action :check_errors, except: :index
-  
+
   def index
-    @upcoming_matches = Match.order(number: :desc).reject { |match| match.reports.find_by(team: current_scout.find_team_for_match(match)) }
-  
+    @upcoming_matches = Match.order(:number).reject { |match| match.reports.find_by(team: current_scout.find_team_for_match(match)) }
+
     @previous_reports = current_scout.reports
   end
-  
+
   def new
     @report = Report.new(scout: current_scout, team: current_scout.find_team_for_match(@match))
   end
-  
+
   def create
     @report = @match.reports.build report_params do |r|
       r.scout = current_scout
@@ -36,7 +36,7 @@ class ReportsController < AuthenticatedController
       render "new"
     end
   end
-  
+
   def update
     if @report.update_attributes report_params
       redirect_to reports_path, flash: { success: 'Successfully updated report!' }
@@ -44,23 +44,23 @@ class ReportsController < AuthenticatedController
       render 'edit'
     end
   end
-  
+
   private
-  
+
   def report_params
     report_params = params.require(:report).permit(:match_id, :scout, :auto_flipped, :auto_moved, :auto_fuel_speed, :auto_fuel_accuracy, :auto_fuel_bottom, :auto_gears_collected, :auto_gears_delivered, :auto_goal_line, :teleop_fuel_speed, :teleop_fuel_accuracy, :teleop_fuel_bottom, :teleop_gears_off_the_ground, :teleop_gears_collected, :teleop_gears_delivered, :flipped, :broken)
   end
-  
+
   def set_match
     @match = Match.find_by id: params[:match_id]
     redirect_to reports_path, flash: { error: "No match found." } if @match.nil?
   end
-  
+
   def set_report
     @report = @match.reports.find_by(id: params[:id])
     redirect_to reports_path, flash: { error: "No report found." } if @match.nil?
   end
-  
+
   def check_errors
     if current_scout.slot.nil?
       redirect_to noslot_path
